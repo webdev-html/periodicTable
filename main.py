@@ -230,7 +230,83 @@ def Search(self):
     Text_box.delete('1.0', 'end')
     try:
         Text_box.insert('1.0', Elements[text])
+        Stringvar.set(Elementneeded.get())def Next(self):
+    global Num
+    global Stringvar
+    Num = list(Elements).index(Elementneeded.get())
+    if Num == length:
+        Num = 0
+        Index = list(Elements.keys())[Num]
+        Elementneeded.delete(0, 'end')
+        Elementneeded.insert(0, Index)
+        Newindex = Elements[Index]
+        Text_box.delete('1.0', 'end')
+        Text_box.insert('1.0', Newindex)
         Stringvar.set(Elementneeded.get())
+    else:
+        Num = Num + 1
+        Index = list(Elements.keys())[Num]
+        Elementneeded.delete(0, 'end')
+        Elementneeded.insert(0, Index)
+        Newindex = Elements[Index]
+        Text_box.delete('1.0', 'end')
+        Text_box.insert('1.0', Newindex)
+        Stringvar.set(Elementneeded.get())
+
+
+def Back(self):
+    global Stringvar
+    global Num
+    Num = list(Elements).index(Elementneeded.get())
+    if Num == 0:
+        Num = length
+        Index = list(Elements.keys())[Num]
+        Elementneeded.delete(0, 'end')
+        Elementneeded.insert(0, Index)
+        Newindex = Elements[Index]
+        Text_box.delete('1.0', 'end')
+        Text_box.insert('1.0', Newindex)
+        Stringvar.set(Elementneeded.get())
+    else:
+
+        Num = Num - 1
+        Index = list(Elements.keys())[Num]
+        Elementneeded.delete(0, 'end')
+        Elementneeded.insert(0, Index)
+        Newindex = Elements[Index]
+        Text_box.delete('1.0', 'end')
+        Text_box.insert('1.0', Newindex)
+        Stringvar.set(Elementneeded.get())
+
+
+lis = []
+for x in range(0, length):
+    i = list(Elements.keys())[x]
+    lis.append(i)
+
+
+def callback(selection):
+    Text_box.delete('1.0', 'end')
+    Text_box.insert('1.0', Elements[selection])
+    Elementneeded.delete(0, 'end')
+    Elementneeded.insert(0, selection)
+
+
+Stringvar = tk.StringVar(window, 'None')
+Dropdown = tk.OptionMenu(window, Stringvar, *lis, command=callback)
+Dropdown.pack()
+
+
+def Search(self):
+    global Stringvar
+    text = Elementneeded.get()
+    Text_box.delete('1.0', 'end')
+    try:
+        Text_box.insert('1.0', Elements[text])
+        Stringvar.set(Elementneeded.get())
+    except:
+        Text_box.insert('1.0', 'That is not an element')
+
     except:
         Text_box.insert('1.0', 'That is not an element')
 
