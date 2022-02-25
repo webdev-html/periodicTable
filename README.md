@@ -1,16 +1,27 @@
 # The Periodic Table Database
+
 This Database gives information of 92 elements,from Hydrogen to Uranium 
 
 Scroll to the How To Use section to learn how to open database
+
 # Features
+
 The five features of the database:
+
 A Dropdown
+
 A text box for information
+
 A text box to search elements(element has to start with capital letter)
+
 Arrow keys to move through elements
+
 clear the text box of all information
+
 # How to open Database
-scoll to what OS you are using
+
+Scoll to what OS you are using
+
 ## Windows
 1.Go to https://www.python.org/downloads/
 
