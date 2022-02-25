@@ -8,15 +8,15 @@ Scroll to the How To Use section to learn how to open database
 
 The five features of the database:
 
-A Dropdown
+A Dropdown for all the elements
 
-A text box for information
+A text box for information on them
 
-A text box to search elements(element has to start with capital letter)
+A text box to search elements(elements have to start with capital letter)
 
 Arrow keys to move through elements
 
-clear the text box of all information
+Clear the text box of all information
 
 # How to open Database
 
