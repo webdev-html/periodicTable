@@ -61,7 +61,8 @@ Scoll to what OS you are using
 9.The Database is open!
 
 # Version Number and Releases
- Current Version: 0.0.0
+ Current Version: 1.0.0
+ 
  Watch out for Future Releases and whats new!
 
-### This code was development in colaboartion with Soham Shah
+### This code was developed in collaboration with Soham Shah
