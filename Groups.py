@@ -7,7 +7,8 @@ Antimony,Tellurium,Astatine""",
 'Post Transition Metals':"""Aluminum,Gallium,Indium,Tin,
 Thallium,Lead,Bismuth,Polonium""",
 
-"Transition Metals":"""Scandium,Titanium,Vanadium,Chromium,Manganese,Iron,
+"Transition Metals":"""
+Scandium,Titanium,Vanadium,Chromium,Manganese,Iron,
 Cobalt,Nickel,Copper,Zinc,
 Yttrium,Zirconium,Niobium,Molybdenum,Technetium,
 Ruthenium,Rhodium,Palladium,Silver,Cadmium,Hafnium,
