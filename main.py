@@ -11,6 +11,22 @@ length = 92
 def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes):
         Atomicnumber = float(Number)
         Elementsinsamefamily = Groups.groups[group]
+
+        if Atomicnumber < 118:
+            period = '7'
+            if Atomicnumber < 87:
+                period = '6'
+                if Atomicnumber < 55:
+                    period = '5'
+                    if Atomicnumber < 37:
+                        period = '4'
+                        if Atomicnumber < 19:
+                            period = '3'
+                            if Atomicnumber < 11:
+                                period = '2'
+                                if Atomicnumber < 3:
+                                    period = '1'
+
         if Atomicnumber == 43 or Atomicnumber > 83:
             Radioactive = 'Yes'
         else:
@@ -43,7 +59,8 @@ def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes):
         New_mass = float(mass)
         NeutronsCalc = New_mass - New_Number
         Neutrons = int(round(NeutronsCalc,0))
-        result = "Atomic Number:{} \nAbbreviation:{} \nAtomic Mass:{} u \nGroup:{} \nElements in same Group:{}  \nProtons:{} \nNeutrons:{} \nElectrons: {} \nMelting Point: {} °C \nBoiling Point:{} °C \nInert:{} \nState of matter at room temperature:{} \nDensity:{}kg/Meters Cubed \nColor:{} \nAtomic Radius:{} Pm \nRadioactive: {} \nMan Made:{} \nNumber of Known Isotopes:{}".format(Number,abrev,mass,group,Elementsinsamefamily,Number,Neutrons,Number,melt,boil,Inert,State,dence,color,radius,Radioactive,Manmade,isotopes)
+#Find isoptope Numbers
+        result = "Atomic Number:{} \nAbbreviation:{} \nAtomic Mass:{} u \nGroup:{} \nElements in same Group:{}\nPeriod:{}  \nProtons:{} \nNeutrons:{} \nElectrons: {} \nMelting Point: {} °C \nBoiling Point:{} °C \nInert:{} \nState of matter at room temperature:{} \nDensity:{}kg/Meters Cubed \nColor:{} \nAtomic Radius:{} Pm \nRadioactive: {} \nMan Made:{} \nNumber of Known Isotopes:{}".format(Number,abrev,mass,group,Elementsinsamefamily,period,Number,Neutrons,Number,melt,boil,Inert,State,dence,color,radius,Radioactive,Manmade,isotopes)
         return result
 
 Elements = {"Hydrogen": form('1', 'H', '1.008', 'Reactive Nonmetals', '-259.1', '-252.9', '0.0899', 'None', '53','7'),
@@ -148,7 +165,7 @@ label = tk.Label(text="What Element do you want to look at?")
 label.pack()
 Elementneeded = tk.Entry(width=50)
 Elementneeded.pack()
-Text_box = tk.Text()
+Text_box = tk.Text(height='50')
 Text_box.pack()
 
 def Clearbox():
@@ -214,7 +231,6 @@ def Back(self):
     except:
          Text_box.delete('1.0','end')
          Text_box.insert('1.0','You can not move through elements if no valid element is selected')
-#loops
 lis = []
 for x in range(0,length):
     i = list(Elements.keys())[x]
