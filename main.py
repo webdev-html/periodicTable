@@ -8,7 +8,7 @@ length = 92
 
     
 
-def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes):
+def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes,halflife='Stable'):
         Atomicnumber = float(Number)
         Elementsinsamefamily = Groups.groups[group]
 
@@ -27,7 +27,7 @@ def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes):
                                 if Atomicnumber < 3:
                                     period = '1'
 
-        if Atomicnumber == 43 or Atomicnumber > 83:
+        if Atomicnumber == 43 or Atomicnumber > 82:
             Radioactive = 'Yes'
         else:
             Radioactive = 'No'
@@ -60,7 +60,7 @@ def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes):
         NeutronsCalc = New_mass - New_Number
         Neutrons = int(round(NeutronsCalc,0))
 #Find isoptope Numbers
-        result = "Atomic Number:{} \nAbbreviation:{} \nAtomic Mass:{} u \nGroup:{} \nElements in same Group:{}\nPeriod:{}  \nProtons:{} \nNeutrons:{} \nElectrons: {} \nMelting Point: {} °C \nBoiling Point:{} °C \nInert:{} \nState of matter at room temperature:{} \nDensity:{}kg/Meters Cubed \nColor:{} \nAtomic Radius:{} Pm \nRadioactive: {} \nMan Made:{} \nNumber of Known Isotopes:{}".format(Number,abrev,mass,group,Elementsinsamefamily,period,Number,Neutrons,Number,melt,boil,Inert,State,dence,color,radius,Radioactive,Manmade,isotopes)
+        result = "Atomic Number:{} \nAbbreviation:{} \nAtomic Mass:{} u \nGroup:{} \nElements in same Group:{}\nPeriod:{}  \nProtons:{} \nNeutrons:{} \nElectrons: {} \nMelting Point: {} °C \nBoiling Point:{} °C \nInert:{} \nState of matter at room temperature:{} \nDensity:{}kg/Meters Cubed \nColor:{} \nAtomic Radius:{} Pm \nRadioactive: {} \nMan Made:{} \nNumber of Known Isotopes:{} \nHalf Life:{}".format(Number,abrev,mass,group,Elementsinsamefamily,period,Number,Neutrons,Number,melt,boil,Inert,State,dence,color,radius,Radioactive,Manmade,isotopes,halflife)
         return result
 
 Elements = {"Hydrogen": form('1', 'H', '1.008', 'Reactive Nonmetals', '-259.1', '-252.9', '0.0899', 'None', '53','7'),
@@ -105,7 +105,7 @@ Elements = {"Hydrogen": form('1', 'H', '1.008', 'Reactive Nonmetals', '-259.1', 
             'Zirconium': form('40', 'Zr', '91.224', 'Transition Metals', '1855', '4409', '6511', 'Silver', '206','32'),
             'Niobium': form('41', 'Nb', '92.906', 'Transition Metals', '2477', '4744', '8570', 'Gray', '198','32'),
             'Molubdenum': form('42', 'Mo', '95.95', 'Transition Metals', '2623', '4693', '10280', 'Gray', '190','32'),
-            'Technetium': form('43', 'Tc', '98', 'Transition Metals', '2157', '4265', '11500', 'Silver', '183','33'),
+            'Technetium': form('43', 'Tc', '98', 'Transition Metals', '2157', '4265', '11500', 'Silver', '183','33','4.12x 106 y'),
             'Ruthenium': form('44', 'Ru', '101.07', 'Transition Metals', '2334', '4150', '12370', 'Silver', '178','33'),
             'Rhodium': form('45', 'Rh', '102.91', 'Transition Metals', '1964', '3695', '12450', 'Silver', '173','33'),
             'Palladium': form('46', 'Pd', '106.42', 'Transition Metals', '1554.90', '2963', '12023', 'Silver', '169','33'),
@@ -146,16 +146,16 @@ Elements = {"Hydrogen": form('1', 'H', '1.008', 'Reactive Nonmetals', '-259.1', 
             'Mercury': form('80', 'Hg', '200.59', 'Transition Metals', '-38.83', '356.73', '13534', 'Silver', '171','39'),
             'Thallium': form('81', 'TI', '204.38', 'Post Transition Metals', '304', '1473', '11850', 'Gray', '156','38'),
             'Lead': form('82', 'Pb', '207.2', 'Post Transition Metals', '327.46', '1749', '11340','Silver-Hint of Blue', '154','37'),
-            'Bismuth': form('83', 'Bi', '208.980', 'Post Transition Metals', '271.3', '1564', '9780', 'Silvery-White','143','38'),
-            'Polonium': form('84', 'Po', '209', 'Post Transition Metals', '255', '961.9', '9196', 'Silver', '135','32'),
-            'Astatine': form('85', 'At', '210', 'Metalloids', '302', '350', 'None', 'Silver', '127','30'),
-            'Radon': form('86', 'Rn', '222', 'Noble Gases', '-71.1', '-68.85', '9.73', 'Colorless ', '120','33'),
-            'Francium': form('87', 'Fr', '223', 'Alkali Metals', '20.9', '650', 'None', 'Silver-Gray-Metallic','None','33'),
-            'Radium': form('88', 'Ra', '226', 'Alkaline Earth Metals', '700', '1737', '5000', 'Silver-WHite', 'None','32'),
-            'Actinium': form('89', 'Ac', '227', 'Actinoids', '1050', '3200', '10070', 'Silver-White', 'None','30'),
-            'Thorium': form('90', 'Th', '232.038', 'Actinoids', '1750', '4820', '11724', 'Silver', 'None','29'),
-            'Protactinium': form('91', 'Pa', '231.036', 'Actinoids', '1572', '4000', '15370', 'Silver-Gray', 'None','28'),
-            'Uranium': form('92', 'U', '238.029', 'Actinoids', '1135', '3900', '19050', 'Silver-Gray', 'None','26'),
+            'Bismuth': form('83', 'Bi', '208.980', 'Post Transition Metals', '271.3', '1564', '9780', 'Silvery-White','143','38','1.9x1019 y'),
+            'Polonium': form('84', 'Po', '209', 'Post Transition Metals', '255', '961.9', '9196', 'Silver', '135','32','102.1 y'),
+            'Astatine': form('85', 'At', '210', 'Metalloids', '302', '350', 'None', 'Silver', '127','30','8.06h'),
+            'Radon': form('86', 'Rn', '222', 'Noble Gases', '-71.1', '-68.85', '9.73', 'Colorless ', '120','33','3.823495 d'),
+            'Francium': form('87', 'Fr', '223', 'Alkali Metals', '20.9', '650', 'None', 'Silver-Gray-Metallic','None','33','21.7 m'),
+            'Radium': form('88', 'Ra', '226', 'Alkaline Earth Metals', '700', '1737', '5000', 'Silver-WHite', 'None','32','1.59x103 y'),
+            'Actinium': form('89', 'Ac', '227', 'Actinoids', '1050', '3200', '10070', 'Silver-White', 'None','30','21.7865 y'),
+            'Thorium': form('90', 'Th', '232.038', 'Actinoids', '1750', '4820', '11724', 'Silver', 'None','29','1.406x1010y'),
+            'Protactinium': form('91', 'Pa', '231.036', 'Actinoids', '1572', '4000', '15370', 'Silver-Gray', 'None','28','32788y'),
+            'Uranium': form('92', 'U', '238.029', 'Actinoids', '1135', '3900', '19050', 'Silver-Gray', 'None','26','4.471x109y'),
     }
 
 window = tk.Tk()
