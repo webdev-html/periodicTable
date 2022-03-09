@@ -11,7 +11,6 @@ length = 91
 def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes,discovered,uses,halflife='Stable'):
         Atomicnumber = float(Number)
         Elementsinsamefamily = Groups.groups[group]
-
         if Atomicnumber < 118:
             period = '7'
             if Atomicnumber < 87:
@@ -59,12 +58,13 @@ def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes,discovere
         New_mass = float(mass)
         NeutronsCalc = New_mass - New_Number
         Neutrons = int(round(NeutronsCalc,0))
+       
 
         result = "Atomic Number:{} \nAbbreviation:{} \nAtomic Mass:{} u \nGroup:{} \nElements in same Group:{}\nPeriod:{}  \nProtons:{} \nNeutrons:{} \nElectrons: {} \nMelting Point: {} °C \nBoiling Point:{} °C \nInert:{} \nState of matter at room temperature:{} \nDensity:{}kg/Meters Cubed \nColor:{} \nAtomic Radius:{} Pm \nRadioactive: {} \nMan Made:{} \nNumber of Known Isotopes:{} \nHalf Life:{}\nDiscovered:{} \nUses:{}".format(Number,abrev,mass,group,Elementsinsamefamily,period,Number,Neutrons,Number,melt,boil,Inert,State,dence,color,radius,Radioactive,Manmade,isotopes,halflife,discovered,uses)
         return result
 
 Elements = {"Hydrogen": form('1', 'H', '1.008', 'Reactive Nonmetals', '-259.1', '-252.9', '0.0899', 'None', '53','7','1766','Hydrogen is used in Tritium Watches and Sun Fusion'),
-            "Helium": form('2', 'HE', '4.0026', 'Noble Gases', '-272.2', '-269', '0.1785', 'None', '31','7','1895','Helium is used in Balloons,Blimps,and Helium-ion and Helium Neon lasers'),
+            "Helium": form('2', 'HE', '4.0026', 'Noble Gases', '-272.2', '-269', '0.1785', 'None', '31','7','1895','Helium is used in Balloons,Blimps,Helium-ion Dursale Batteries,and Helium-ion and Helium Neon lasers'),
             "Lithium": form('3', 'LI', '6.94', 'Alkali Metals', '180.54', '1342', '535', 'Silver', '167','9','1817','Lithium is used in Lithium Batteries and Lithium Carbonate Pills'),
             'Beryllium': form('4', 'BE', '9.0122', 'Alkaline Earth Metals', '1287', '2470', '1848', 'SlateGray', '112','11','1797','Berylium is used in Beryllium Copper golf clubs and Berylium oxide high voltage insulators'),
             "Boron": form('5', 'B', '10.81', 'Metalloids', '2075', '4000', '2460', 'Black', '87','13','1808','Boron is used in Silly putty and Boric acid'),
@@ -82,7 +82,7 @@ Elements = {"Hydrogen": form('1', 'H', '1.008', 'Reactive Nonmetals', '-259.1', 
             "Chlorine": form('17', "CL", '35.45', 'Reactive Nonmetals', '-101.5', '-34.040', '3.214', 'Yellow', '79','23','1774','Disenfecting surfaces and Organic Chemistry '),
             "Argon": form('18', "AR", '39.948', 'Noble Gases', '-189', '-186', '1.784', 'None', '71','23','1894','production of reactive elements,fluorescent light bulbs'),
             "Potassium": form('19', "K", '39.098', 'Alkali Metals', '63.38', '758.9', '856', 'Silver', '243','23','1807','Potassium carbonate os used in glass,while Potassium hydroxide is used in detergent and liquid soap'),
-            "Calcium": form('20', 'CA', '40.078', 'Alkaline Earth Metals', '841.9', '1484', '1550', 'Silver', '194','23','1808','aluminum is used as an alloying agent for aluminum,beryllium,copper,lead,and magnesium alloys,and also in building stones for cement'),
+            "Calcium": form('20', 'CA', '40.078', 'Alkaline Earth Metals', '841.9', '1484', '1550', 'Silver', '194','23','1808','Calcium is used as an alloying agent for aluminum,beryllium,copper,lead,and magnesium alloys,and also in building stones for cement'),
             "Scandium": form('21', 'SC', '44.956', 'Transition Metals', '1541', '2830', '2985', 'Silver', '184','24','1879','scandium can be found in high end bicycle frames and baseball hats'),
             "Titanium": form('22', "TI", '47.867', 'Transition Metals', '1668', '3287', '4507', 'Silver', '176','25','1791','titanium alloys are used in spacecraft and missles'),
             "Vanadium": form('23', "V", '50.942', 'Transition Metals', '1910', '3407', '6110', 'Silver', '171','25','1801','vanadium is used in armour plates,axles,tools,piston rods and crankshafts,alloys used in nuclear reactors.'),
@@ -159,12 +159,17 @@ Elements = {"Hydrogen": form('1', 'H', '1.008', 'Reactive Nonmetals', '-259.1', 
 
 window = tk.Tk()
 window.title('The Periodic Database')
+window.geometry('1000x700')
+Scroll = tk.Scrollbar(window,orient='vertical')
+Scroll.grid(row='1')
 label = tk.Label(text="What Element do you want to look at?")
-label.pack()
+label.grid(row='1',column='9')
 Elementneeded = tk.Entry(width=50)
-Elementneeded.pack()
-Text_box = tk.Text(height='50',width='100')
-Text_box.pack()
+Elementneeded.grid(row='3',column='9')
+Text_box = tk.Text(height='100',width='100',yscrollcommand=Scroll.set)
+Text_box.grid(row='9',column='9',columnspan='1')
+Scroll.config(command=Text_box.yview)
+
 
 def Clearbox():
     Text_box.delete('1.0','end')
@@ -249,14 +254,11 @@ def Search(self):
 Stringvar = tk.StringVar(window,'None')
 
 Dropdown = tk.OptionMenu(window,Stringvar,*lis,command=callback)
-Dropdown.pack()
-def scale(value):
-    Text_box.config(width=value)
+Dropdown.grid(row='5',column='300')
 Clear = tk.Button(text="Clear",command=Clearbox)
-Clear.pack()
+Clear.grid(row='3',padx='500',column='300')
 
-boxscale = tk.Scale(window,from_=100,to=200,command=scale,orient='horizontal',label='Text Box Width')
-boxscale.pack()
+
 window.bind('<Return>',Search)
 window.bind('<Right>',Next)
 window.bind('<Left>',Back)
