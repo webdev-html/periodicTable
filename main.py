@@ -5,12 +5,21 @@ length = 91
 
 
 
-
+window = tk.Tk()
+window.title('The Periodic Database')
+window.geometry('1800x1800')
+label = tk.Label(text="What Element do you want to look at?")
+label.grid(row='1',column='9')
+Elementneeded = tk.Entry(width=50)
+Elementneeded.grid(row='3',column='9')
+Text_box = tk.Text(height='100',width='120',wrap='word')
+Text_box.grid(row='8',column='9',columnspan='1')
     
 
 def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes,discovered,uses,halflife='Stable'):
         Atomicnumber = float(Number)
         Elementsinsamefamily = Groups.groups[group]
+       
         if Atomicnumber < 118:
             period = '7'
             if Atomicnumber < 87:
@@ -58,10 +67,12 @@ def form(Number,abrev,mass,group,melt,boil,dence,color,radius,isotopes,discovere
         New_mass = float(mass)
         NeutronsCalc = New_mass - New_Number
         Neutrons = int(round(NeutronsCalc,0))
-       
+        groupinfo = Groups.groupdefs[group]
 
-        result = "Atomic Number:{} \nAbbreviation:{} \nAtomic Mass:{} u \nGroup:{} \nElements in same Group:{}\nPeriod:{}  \nProtons:{} \nNeutrons:{} \nElectrons: {} \nMelting Point: {} °C \nBoiling Point:{} °C \nInert:{} \nState of matter at room temperature:{} \nDensity:{}kg/Meters Cubed \nColor:{} \nAtomic Radius:{} Pm \nRadioactive: {} \nMan Made:{} \nNumber of Known Isotopes:{} \nHalf Life:{}\nDiscovered:{} \nUses:{}".format(Number,abrev,mass,group,Elementsinsamefamily,period,Number,Neutrons,Number,melt,boil,Inert,State,dence,color,radius,Radioactive,Manmade,isotopes,halflife,discovered,uses)
+
+        result = "Atomic Number:{} \nAbbreviation:{} \nAtomic Mass:{} u \nGroup:{} \nElements in same Group:{}\nGroup Info:{}\nPeriod:{}  \nProtons:{} \nNeutrons:{} \nElectrons: {} \nMelting Point: {} °C \nBoiling Point:{} °C \nInert:{} \nState of matter at room temperature:{} \nDensity:{}kg/Meters Cubed \nColor:{} \nAtomic Radius:{} Pm \nRadioactive: {} \nMan Made:{} \nNumber of Known Isotopes:{} \nHalf Life:{}\nDiscovered:{} \nUses:{} ".format(Number,abrev,mass,group,Elementsinsamefamily,groupinfo,period,Number,Neutrons,Number,melt,boil,Inert,State,dence,color,radius,Radioactive,Manmade,isotopes,halflife,discovered,uses)
         return result
+
 
 Elements = {"Hydrogen": form('1', 'H', '1.008', 'Reactive Nonmetals', '-259.1', '-252.9', '0.0899', 'None', '53','7','1766','Hydrogen is used in Tritium Watches and Sun Fusion'),
             "Helium": form('2', 'HE', '4.0026', 'Noble Gases', '-272.2', '-269', '0.1785', 'None', '31','7','1895','Helium is used in Balloons,Blimps,Helium-ion Dursale Batteries,and Helium-ion and Helium Neon lasers'),
@@ -157,18 +168,8 @@ Elements = {"Hydrogen": form('1', 'H', '1.008', 'Reactive Nonmetals', '-259.1', 
             'Uranium': form('92', 'U', '238.029', 'Actinoids', '1135', '3900', '19050', 'Silver-Gray', 'None','26','1789','Uranium is the element that gives us nuclear fuel, and is used in nuclear subs and weapons','4.471x109y'),
     }
 
-window = tk.Tk()
-window.title('The Periodic Database')
-window.geometry('1000x700')
-Scroll = tk.Scrollbar(window,orient='vertical')
-Scroll.grid(row='1')
-label = tk.Label(text="What Element do you want to look at?")
-label.grid(row='1',column='9')
-Elementneeded = tk.Entry(width=50)
-Elementneeded.grid(row='3',column='9')
-Text_box = tk.Text(height='100',width='100',yscrollcommand=Scroll.set)
-Text_box.grid(row='9',column='9',columnspan='1')
-Scroll.config(command=Text_box.yview)
+
+
 
 
 def Clearbox():
@@ -254,7 +255,7 @@ def Search(self):
 Stringvar = tk.StringVar(window,'None')
 
 Dropdown = tk.OptionMenu(window,Stringvar,*lis,command=callback)
-Dropdown.grid(row='5',column='300')
+Dropdown.grid(row='5',column='300',columnspan='2')
 Clear = tk.Button(text="Clear",command=Clearbox)
 Clear.grid(row='3',padx='500',column='300')
 
@@ -264,7 +265,7 @@ window.bind('<Right>',Next)
 window.bind('<Left>',Back)
 
 window.mainloop()
-#Binds
+
 
 
 
